@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.IO;
 using System.Text;
 using System;
 
-public class BaiduVoiceManager : MonoBehaviour {
+public class BaiduVoiceManager : MonoBehaviour{
 	private string token;		//access_token
 	private string cuid="00";		//用户唯一标识，用来区分用户，一般为机器MAC地址或IMEI码  一定要填 用于识别机器
 	private string format = "wav";                  //语音格式
@@ -15,8 +16,8 @@ public class BaiduVoiceManager : MonoBehaviour {
     private int channel = 1;                        //声道数
     private string speech;                          //语音数据，进行base64编码
     private int len;                                //原始语音长度
-    private string lan = "en";                      //语种
- 
+    private string lan = "zh";                      //语种
+    
     private string grant_Type = "client_credentials";  
     //这两个需要到yuyin.baidu.com/app创建应用，查看key
     private string client_ID = "O9hqE7qG1GClCLCyBCFfdeG7";                       //百度appkey 
@@ -198,12 +199,30 @@ public class BaiduVoiceManager : MonoBehaviour {
 	}
 
 	public Text debugText;
-	private void Update() {
+	void Update() {
 		if(audioToString==null)return;
 		else
-		Debug.Log(audioToString);
+		//Debug.Log(audioToString);
 		debugText.text="你刚刚说了如下内容:\n"+audioToString;
+
 	}
 	
-	
+
+    private bool IsDown=false;    
+
+    public Text btnText;
+	public void OnBtnDown()
+    {
+        IsDown=true;       
+        btnText.text="正在说话...";
+        StartMic();
+    }
+
+    public void OnBtnUp()
+    {
+        IsDown=false;
+        btnText.text="开始说话";
+        EndMic();
+    }
+
 }
