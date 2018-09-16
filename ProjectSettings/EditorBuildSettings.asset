@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 43b434350d17f7045bba4bd9a5555e8f
+  - enabled: 1
+    path: Assets/Scenes/BaiduVoice.unity
+    guid: 6d2ec00ac853042f9a5a5ed419f796d2
+  - enabled: 1
+    path: Assets/Scenes/TextToSpeech.unity
+    guid: 7f93b91087971504087c27db33f9881a
